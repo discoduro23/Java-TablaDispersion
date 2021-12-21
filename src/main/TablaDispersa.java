@@ -5,16 +5,29 @@ import java.io.InputStreamReader;
 
 public class TablaDispersa {
 
-	private int TAMTABLA = 0;
-	private int elementosIntroducir;
-	private int numElementos;
-	private double factorCarga;
-	private Jugador[] tabla;
+	int TAMTABLA = 0;
+	int elementosIntroducir;
+	int numElementos;
+	double factorCarga;
+	Jugador[] tabla;
+	
+	public TablaDispersa(int tam)
+	{
+		//se inicializa la tabla y sus elementos a NULL
+		TAMTABLA = tamtablaEstatico(tam);
+		tabla=new Jugador[TAMTABLA];
+		for(int i=0; i<TAMTABLA;i++)
+		{
+			tabla[i]=null;
+		}
+		//se inicializan los atributos a 0
+		numElementos=0;
+		factorCarga=0;
+	}
 	
 	public TablaDispersa()
 	{
 		//se inicializa la tabla y sus elementos a NULL
-		
 		TAMTABLA = tamtablaDinamico();
 		tabla=new Jugador[TAMTABLA];
 		for(int i=0; i<TAMTABLA;i++)
@@ -25,6 +38,16 @@ public class TablaDispersa {
 		numElementos=0;
 		factorCarga=0;
 	}
+	
+	public int tamtablaEstatico(int tam) {
+		int resultado;
+		
+		resultado = (int) (tam / 0.8);
+		resultado = nextPrime(resultado);
+		System.out.println("El tamaño total de la tabla sera: " + resultado);
+		return resultado;
+	}
+	
 	
 	public int tamtablaDinamico() {
 		int resultado;

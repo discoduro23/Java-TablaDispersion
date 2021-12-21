@@ -95,8 +95,11 @@ public class GameManager {
 	
 	
 	public void agregarPuntuacion(String identificador, int puntosSumar) {
-		if(identificadorYaEnTabla(identificador)) 
-			tablaJugadores.buscar(identificador).puntuacion += puntosSumar;
+		if(identificadorYaEnTabla(identificador)) {
+			int aux = Integer.parseInt(identificador); 
+			tablaJugadores.buscar(aux).puntuacion += puntosSumar;
+		}
+			
 		else
 			System.out.println("Error al aumentar la puntuacion, no esta en la tabla ese identificador");
 	}
