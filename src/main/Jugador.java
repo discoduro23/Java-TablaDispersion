@@ -11,8 +11,9 @@ public class Jugador {
 		esAlta = false;
 	}
 	
-	public String getCodigo() {
-		return identificador;
+	public int getCodigo() {
+		int aux = Integer.parseInt(identificador); 
+		return aux;
 	}
 	
 	public void muestra() {
