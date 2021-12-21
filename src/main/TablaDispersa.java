@@ -79,7 +79,7 @@ public class TablaDispersa {
 	
 	
 	
-	//devuelve una referencia a un elemento di lo encuentra en la tabla y devuelve NULL si no lo encuentra o fue dado de baja
+	//devuelve una referencia a un elemento si lo encuentra en la tabla y devuelve NULL si no lo encuentra o fue dado de baja
 	public Jugador buscar(String clave) {
 		
 		int posicion = direccion(clave);

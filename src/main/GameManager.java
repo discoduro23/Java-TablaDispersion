@@ -79,6 +79,20 @@ public class GameManager {
 	}
 	
 	
+	/*
+	
+	public boolean yaEnTabla(Object objComprobar) {
+		if(objComprobar.getClass() == String.class) {	//Es una string
+			if(tablaJugadores.tabla[tablaJugadores.direccion((String) objComprobar)].esAlta && (tablaJugadores.tabla[tablaJugadores.direccion((String) objComprobar)].identificador == objComprobar)) { //Esta activa, y el identificador es igual
+				return true;
+			
+			} 
+		} else { //Hemos metido el Jugador
+			if(tablaJugadores.tabla[tablaJugadores.direccion((Jugador) objComprobar.identificador)].esAlta && (tablaJugadores.tabla[tablaJugadores.direccion((String) objComprobar)].identificador == objComprobar))
+		}
+		*/
+	
+	
 	
 	public void agregarPuntuacion(String identificador, int puntosSumar) {
 		if(identificadorYaEnTabla(identificador)) 
@@ -91,6 +105,11 @@ public class GameManager {
 	
 	
 }
+	
+	
+	
+
+
 	
 	
 	
