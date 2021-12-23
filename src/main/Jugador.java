@@ -11,9 +11,21 @@ public class Jugador {
 		esAlta = false;
 	}
 	
+	public Jugador(String identificador, int punt) {
+		this.identificador = identificador;
+		puntuacion = punt;
+		esAlta = true;
+	}
+	
 	public int getCodigo() {
-		int aux = Integer.parseInt(identificador); 
-		return aux;
+		char ch[] = identificador.toCharArray();
+		int sum = 0;
+		int zeroAscii = (int)'0';
+		for (char c:ch) {
+			int tmpAscii = (int)c;
+			sum = (sum*10)+(tmpAscii-zeroAscii);
+		}
+		return sum;
 	}
 	
 	public void muestra() {

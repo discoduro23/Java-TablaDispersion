@@ -3,32 +3,40 @@ package main;
 public class QuickShort {
 	QuickShort(){
 	}
-	public void QuickShortOrdenacion(int[] array, int i, int j) {
-		int pivote=0;
-		if((float) ((i+j)/2) > (int) ((i+j)/2)) pivote = (int) ((i+j)/2)+1;
-		else pivote=(int) ((i+j)/2);
-			int aux = 0, jaux=j, iaux=i;
-			do  {
-				while (array[iaux] < array[pivote]){
+	
+	QuickShort(Jugador[] array, int i, int j){
+		QuickShortOrdenacion(array, i, j);
+	}
+	
+	public void QuickShortOrdenacion(Jugador[] array, int i, int j) {
+			Jugador pivote= array[i];
+			int jaux=j, iaux=i;
+			Jugador aux;
+			while(iaux < jaux)  {
+				while (array[iaux].puntuacion <= pivote.puntuacion && iaux < jaux){
 					iaux++;
 				}
-				while (array[jaux] > array[pivote]) {
+				while (array[jaux].puntuacion > pivote.puntuacion) {
 					jaux--;
 				}
-				if(iaux <= jaux){
+				if(iaux < jaux){
 					aux = array[iaux];
 					array[iaux] = array[jaux];
 					array[jaux] = aux;
-					iaux++;
-					jaux--;
 				}
 					
-			}while(iaux<=jaux);
-			if(jaux>i) QuickShortOrdenacion(array, i, jaux);
-			if(iaux<j) QuickShortOrdenacion(array, iaux, j);
-		
-	}
+			}
+			
+			array[i] = array[jaux];
+			array[jaux] = pivote;
+			
+			if(i < jaux-1) QuickShortOrdenacion(array, i, jaux - 1);
+			if(jaux + 1 < j) QuickShortOrdenacion(array, jaux + 1, j);
+	} 
+	
+	
 
+	/*
 	public int[] combinar(int[] array1, int[] array2, int pivote) {
 		int length = array1.length + array2.length;
 		int[] newArray = new int[length];
@@ -52,18 +60,19 @@ public class QuickShort {
 		
 		return newArray;
 	}
+	*/
 	
 	
-	
-	public void mostrar(int[] array){
+	public void mostrar(Jugador[] array){
 		for(int i=0; i<array.length;i++) {
-			System.out.println(array[i]);
+			System.out.println(array[i].puntuacion);
 		}
 	}
 	
-	public boolean comprobarOrdenacion(int[] array) {
+	
+	public boolean comprobarOrdenacion(Jugador[] array) {
 		for(int i = 0; i<array.length-1; i++) {
-			if (array[i]>array[i+1]) return false;
+			if (array[i].puntuacion >= array[i+1].puntuacion) return false;
 		}
 		return true;
 	}

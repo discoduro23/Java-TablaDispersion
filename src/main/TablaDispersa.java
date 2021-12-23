@@ -119,12 +119,12 @@ public class TablaDispersa {
 		return elementosIntroducir;
     }
 	//devuelve la posición o índice de la tabla libre para insertar
-	public int direccion(int NIF)
+	public int direccion(int identificador)
 	{
 		int i=0,p;
 		long d;
 		//como la clave de dispersion es de tipo cadena, primero se convierte a un valor entero
-		d=NIF;
+		d=identificador;
 		
 		//aplica aritmetica modular para obtener la dirección base
 		
@@ -132,7 +132,7 @@ public class TablaDispersa {
 		
 		//bucle de exploración cuadratica
 		
-		while(tabla[p]!=null && !(tabla[p].getCodigo() == NIF))
+		while(tabla[p]!=null && !(tabla[p].getCodigo() == identificador))
 		{
 			i++;
 			p=p+i*i;
@@ -152,10 +152,10 @@ public class TablaDispersa {
 	}
 	
 	//devuelve una referencia a un elemento di lo encuentra en la tabla y devuelve NULL si no lo encuentra o fue dado de baja
-	public Jugador buscar(int NIF)
+	public Jugador buscar(int identificador)
 	{
 		
-		int posicion=direccion(NIF);
+		int posicion=direccion(identificador);
 		Jugador pr=tabla[posicion];
 		if(pr!=null)
 			if(!pr.esAlta) pr=null;
@@ -164,11 +164,34 @@ public class TablaDispersa {
 	}
 	
 	//para dar de baja se siguen los mismos pasos que para buscar y se pone a false el atributo esAlta
-	public void eliminar(int NIF)
+	public void eliminar(int identificador)
 	{
-		int posicion=direccion(NIF);
+		int posicion=direccion(identificador);
 		if(tabla[posicion]!=null)
 			tabla[posicion].esAlta=false;
 		
 	}
+	
+	public Jugador[] devolverTabla() //Devuelve tabla SIN CEROS. Esencial para los algoritmos de ordenacion
+	{
+		Jugador[] aux = new Jugador[numElementos];
+		
+		int j = 0;
+		for(int i = 0; i < TAMTABLA; i++)
+		{
+			if(tabla[i] != null) 
+				{
+				aux[j] = tabla[i];
+				j++;
+				}
+		}
+		
+		return aux;
+	}
+	
+	public int getNumElementos()
+	{
+		return numElementos;
+	}
+	
 }

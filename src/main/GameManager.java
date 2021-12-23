@@ -9,18 +9,8 @@ public class GameManager {
 		tablaJugadores = new TablaDispersa(15);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	public void addJugador(Jugador jugadorMeter) {
-		if(jugadorYaEnTabla(jugadorMeter))
-			System.out.println("Error al Introducir Jugador, ya está en la Tabla");
-		else
-			tablaJugadores.insertar(jugadorMeter);
+		tablaJugadores.insertar(jugadorMeter);
 	}
 	
 	
@@ -104,6 +94,12 @@ public class GameManager {
 			System.out.println("Error al aumentar la puntuacion, no esta en la tabla ese identificador");
 	}
 	
+	public void visualizarRonda() {
+				
+		Jugador[] aux = tablaJugadores.devolverTabla();
+		QuickShort quickAux = new QuickShort(aux, 0, tablaJugadores.getNumElementos() - 1);
+		quickAux.mostrar(aux);
+	}
 	
 	
 	
