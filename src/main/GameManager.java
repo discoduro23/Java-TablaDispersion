@@ -21,10 +21,10 @@ public class GameManager {
         int opcion; //Guardaremos la opcion del usuario
 
         while(!salir){
-        	System.out.println("=========Selecciona una opción el menú=========");
+        	System.out.println("\n=========Selecciona una opción el menú=========");
             System.out.println("1. Insertar jugador");
             System.out.println("2. Añadir puntos a jugador");
-            System.out.println("3. Visualizar ronda");
+            System.out.println("3. Visualizar ronda"); //HECHO
             System.out.println("4. Eliminar puntos a jugador");
             System.out.println("5. Eliminar jugador");
             System.out.println("6. Ver puntuaciones");
@@ -34,14 +34,33 @@ public class GameManager {
             try {
             	opcion = sn.nextInt();
                 switch (opcion) {
-                    case 1 -> System.out.println("Has seleccionado la opcion 1");
-                    case 2 -> System.out.println("Has seleccionado la opcion 2");
-                    case 3 -> System.out.println("Has seleccionado la opcion 3");
-                    case 4 -> System.out.println("Has seleccionado la opcion 4");
-                    case 5 -> System.out.println("Has seleccionado la opcion 5");
-                    case 6 -> System.out.println("Has seleccionado la opcion 6");
-                    case 7 -> salir = true;
-                    default -> System.out.println("Solo números entre 1 y 7");
+                    case 1: 
+                    	System.out.println("\nHas seleccionado la opcion 1");
+                    	break;
+                    case 2:
+                    	System.out.println("\nHas seleccionado la opcion 2");
+                    	break;
+                    case 3: 
+                    	System.out.println("\nHas seleccionado la opcion \"Visualizar ronda\"");
+                    	visualizarRonda();
+                    	break;
+                    case 4: 
+                    	System.out.println("\nHas seleccionado la opcion 4");
+                    	break;
+                    case 5: 
+                    	System.out.println("\nHas seleccionado la opcion 5");
+                    	break;
+                    case 6: 
+                    	System.out.println("\nHas seleccionado la opcion 6");
+                    	break;
+                    case 7: 
+                    	salir = true;
+                    	break;
+                    case 99: 
+                    	rellenarTablaParaPruebas();
+                    	break;
+                    default: 
+                    	System.out.println("\nSolo números entre 1 y 7");
                 }
             } catch (InputMismatchException ex) {
                 System.out.println("Debes insertar un número");
@@ -96,12 +115,51 @@ public class GameManager {
 	
 	public void visualizarRonda() {
 				
-		Jugador[] aux = tablaJugadores.devolverTabla();
-		QuickShort quickAux = new QuickShort(aux, 0, tablaJugadores.getNumElementos() - 1);
-		quickAux.mostrar(aux);
+		int numElementos = tablaJugadores.getNumElementos();
+		
+		if(tablaJugadores.getNumElementos() <= 0) System.out.println("No tenemos corredores!\nSelecciona 99 para rellenar con corredores de prueba");
+		else {
+			System.out.println("En la siguiente ronda compiten: ");
+			Jugador[] aux = tablaJugadores.devolverTabla();
+			QuickShort quickAux = new QuickShort(aux, 0, tablaJugadores.getNumElementos() - 1);
+		
+			
+			int j = 0;
+			for(int i = numElementos - 1; 0 <= i; i--) {
+				if(j%2 == 0)
+				System.out.print(aux[i].identificador + " vs "); //Print normal no salta de linea !!
+				if(j%2 == 1)
+					System.out.println(aux[i].identificador + "\n");
+				j++;
+			}
+			
+			if(numElementos%2 == 1) System.out.println("computer");
+			
+		}
+		
 	}
 	
-	
+	public void rellenarTablaParaPruebas() {
+		System.out.println("\nCorredores de testeo introducidos"); 
+		//El nombre va relacionado con su puntaucion para ver mejor los fallos
+		
+		
+		Jugador Player1 = new Jugador("J13", 13);
+		Jugador Player2 = new Jugador("J25", 25);
+		Jugador Player3 = new Jugador("J35", 35);
+		Jugador Player4 = new Jugador("J4", 4);
+		Jugador Player5 = new Jugador("J56", 56);
+		Jugador Player6 = new Jugador("J68", 68);
+		Jugador Player7 = new Jugador("J7", 7);
+		
+		addJugador(Player1);
+		addJugador(Player2);
+		addJugador(Player3);
+		addJugador(Player4);
+		addJugador(Player5);
+		addJugador(Player6);
+		addJugador(Player7);
+	}
 	
 }
 	
