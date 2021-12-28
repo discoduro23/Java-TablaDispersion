@@ -21,6 +21,8 @@ public class GameManager {
         int opcion; //Guardaremos la opcion del usuario
 
         while(!salir){
+        	
+        	
         	System.out.println("\n=========Selecciona una opción el menú=========");
             System.out.println("1. Insertar jugador");
             System.out.println("2. Añadir puntos a jugador");
@@ -35,31 +37,40 @@ public class GameManager {
             	opcion = sn.nextInt();
                 switch (opcion) {
                     case 1: 
+                    	clearConsole();
                     	System.out.println("\nHas seleccionado la opcion 1");
                     	break;
                     case 2:
+                    	clearConsole();
                     	System.out.println("\nHas seleccionado la opcion 2");
                     	break;
                     case 3: 
+                    	clearConsole();
                     	System.out.println("\nHas seleccionado la opcion \"Visualizar ronda\"");
                     	visualizarRonda();
                     	break;
                     case 4: 
+                    	clearConsole();
                     	System.out.println("\nHas seleccionado la opcion 4");
                     	break;
                     case 5: 
+                    	clearConsole();
                     	System.out.println("\nHas seleccionado la opcion 5");
                     	break;
                     case 6: 
+                    	clearConsole();
                     	System.out.println("\nHas seleccionado la opcion 6");
                     	break;
                     case 7: 
+                    	clearConsole();
                     	salir = true;
                     	break;
                     case 99: 
+                    	clearConsole();
                     	rellenarTablaParaPruebas();
                     	break;
                     default: 
+                    	clearConsole();
                     	System.out.println("\nSolo números entre 1 y 7");
                 }
             } catch (InputMismatchException ex) {
@@ -159,6 +170,13 @@ public class GameManager {
 		addJugador(Player5);
 		addJugador(Player6);
 		addJugador(Player7);
+	}
+	
+	public void clearConsole() {
+        for(int i = 0; i < 60; i++)
+        	{
+        		System.out.println("\n");
+        	}
 	}
 	
 }
