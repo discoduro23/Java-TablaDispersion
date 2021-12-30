@@ -172,6 +172,7 @@ public class TablaDispersa {
         if(tabla[posicion]!=null) {
             tabla[posicion].esAlta=false;
         }
+        numElementos--;
 
     }
 
@@ -182,7 +183,7 @@ public class TablaDispersa {
         int j = 0;
         for(int i = 0; i < TAMTABLA; i++)
         {
-            if(tabla[i] != null)
+            if(tabla[i] != null && tabla[i].esAlta)
             {
                 aux[j] = tabla[i];
                 j++;
