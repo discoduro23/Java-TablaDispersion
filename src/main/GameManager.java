@@ -53,37 +53,46 @@ public class GameManager {
                 opcion = sn.nextInt();
                 switch (opcion) {
                     case 1:
+                    	clearConsole();
                         System.out.println("\nHas seleccionado la opcion 1 \" Insertar Jugador\"");
                         pedirdatosjugador();
                         break;
                     case 2:
+                    	clearConsole();
                         System.out.println("\nHas seleccionado la opcion 2 \" Añadir puntos a jugador\"");
                         pedirpuntosjugador();
                         break;
                     case 3:
+                    	clearConsole();
                         System.out.println("\nHas seleccionado la opcion \"Visualizar ronda\"");
                         visualizarRonda();
                         break;
                     case 4:
+                    	clearConsole();
                         System.out.println("\nHas seleccionado la opcion 4 \" Eliminar puntos a jugador\"");
                         pedirpuntosjugadorresta();
                         break;
                     case 5:
+                    	clearConsole();
                         System.out.println("\nHas seleccionado la opcion 5 \" Eliminar Jugador\"");
                         borrarjugador();
                         break;
                     case 6:
+                    	clearConsole();
                         System.out.println("\nHas seleccionado la opcion 6 \" Ver Puntuaciones\"");
                         verpuntuaciones();
                         break;
                     case 7:
+                    	clearConsole();
                         System.out.println("\nGracias por usar nuestro sistema, hasta luego :)");
                         salir = true;
                         break;
                     case 99:
+                    	clearConsole();
                         rellenarTablaParaPruebas();
                         break;
                     default:
+                    	clearConsole();
                         System.out.println("\nSolo números entre 1 y 7");
                 }
             } catch (InputMismatchException ex) {
@@ -275,5 +284,11 @@ public class GameManager {
     public void verpuntuaciones() {
 
     }
+    
+    public void clearConsole() {
+        for(int i = 0; i < 60; i++) {
+        	System.out.println("\n");
+        }
+	}
 
 }
