@@ -23,7 +23,7 @@ public class Jugador {
         int zeroAscii = (int)'0';
         for (char c:ch) {
             int tmpAscii = (int)c;
-            sum = (sum*10)+(tmpAscii-zeroAscii);
+            sum = (sum*100)+(tmpAscii-zeroAscii);
         }
         return sum;
     }

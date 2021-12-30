@@ -145,7 +145,6 @@ public class TablaDispersa {
     {
         int posicion=direccion(r.getCodigo());
         r.esAlta = true;
-        r.puntuacion = 0;
         tabla[posicion]=r;
         numElementos++;
 

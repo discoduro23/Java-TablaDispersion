@@ -19,6 +19,7 @@ public class GameManager {
             }
             else{
                 Jugador nuevo =new Jugador(identificador);
+                nuevo.puntuacion = 0;
                 tablaJugadores.insertar(nuevo);
                 System.out.println("El jugador con identificador "+identificador+" ha sido añadido con exito");
             }
@@ -54,12 +55,12 @@ public class GameManager {
                 switch (opcion) {
                     case 1:
                     	clearConsole();
-                        System.out.println("\nHas seleccionado la opcion 1 \" Insertar Jugador\"");
+                        System.out.println("\nHas seleccionado la opcion 1 \"Insertar Jugador\"");
                         pedirdatosjugador();
                         break;
                     case 2:
                     	clearConsole();
-                        System.out.println("\nHas seleccionado la opcion 2 \" Añadir puntos a jugador\"");
+                        System.out.println("\nHas seleccionado la opcion 2 \"Añadir puntos a jugador\"");
                         pedirpuntosjugador();
                         break;
                     case 3:
@@ -69,17 +70,17 @@ public class GameManager {
                         break;
                     case 4:
                     	clearConsole();
-                        System.out.println("\nHas seleccionado la opcion 4 \" Eliminar puntos a jugador\"");
+                        System.out.println("\nHas seleccionado la opcion 4 \"Eliminar puntos a jugador\"");
                         pedirpuntosjugadorresta();
                         break;
                     case 5:
                     	clearConsole();
-                        System.out.println("\nHas seleccionado la opcion 5 \" Eliminar Jugador\"");
+                        System.out.println("\nHas seleccionado la opcion 5 \"Eliminar Jugador\"");
                         borrarjugador();
                         break;
                     case 6:
                     	clearConsole();
-                        System.out.println("\nHas seleccionado la opcion 6 \" Ver Puntuaciones\"");
+                        System.out.println("\nHas seleccionado la opcion 6 \"Ver Puntuaciones\"");
                         verpuntuaciones();
                         break;
                     case 7:
@@ -184,17 +185,17 @@ public class GameManager {
 
     public void restarPuntuacion(String identificador, int puntosRestar){
         int resta = buscarindentificador(identificador);
-        int pointpj = tablaJugadores.buscar(resta).puntuacion;
-        if (pointpj <= puntosRestar || puntosRestar == 0) {
-            System.out.println("Los puntos del jugador con identificador "+ identificador + " son: "+pointpj+"\n");
+        if (tablaJugadores.buscar(resta).puntuacion < puntosRestar || puntosRestar == 0) {
+            System.out.println("Los puntos del jugador con identificador "+ identificador + " son: "+tablaJugadores.buscar(resta).puntuacion+"\n");
             if (puntosRestar == 0){ System.out.println("El numero a restar es 0 no se restara nada");}
             else {
                 System.out.println("El numero que desea restar es mas grande que la puntuacion actual del jugador, ingrese un numero menor");
             }
         } else {
-            pointpj -= puntosRestar;
-            System.out.println("Los puntos del jugador con identificador "+ identificador + " son: "+pointpj+"\n");
+        	tablaJugadores.buscar(resta).puntuacion -= puntosRestar;
+
             System.out.println("Se han restado " + puntosRestar + " puntos con exito al jugador con identificador " + identificador);
+            System.out.println("Los puntos del jugador con identificador "+ identificador + " son: "+tablaJugadores.buscar(resta).puntuacion+"\n");
         }
 
     }
@@ -208,27 +209,27 @@ public class GameManager {
 
     public void visualizarRonda() {
 
-        int numElementos = tablaJugadores.getNumElementos();
-
-        if(tablaJugadores.getNumElementos() <= 0) System.out.println("No tenemos corredores!\nSelecciona 99 para rellenar con corredores de prueba");
-        else {
-            System.out.println("En la siguiente ronda compiten: ");
-            Jugador[] aux = tablaJugadores.devolverTabla();
-            QuickShort quickAux = new QuickShort(aux, 0, tablaJugadores.getNumElementos() - 1);
-
-
-            int j = 0;
-            for(int i = numElementos - 1; 0 <= i; i--) {
-                if(j%2 == 0)
-                    System.out.print(aux[i].identificador + " vs "); //Print normal no salta de linea !!
-                if(j%2 == 1)
-                    System.out.println(aux[i].identificador + "\n");
-                j++;
-            }
-
-            if(numElementos%2 == 1) System.out.println("computer");
-
-        }
+		int numElementos = tablaJugadores.getNumElementos();
+		
+		if(tablaJugadores.getNumElementos() <= 0) System.out.println("No tenemos corredores!\nSelecciona 99 para rellenar con corredores de prueba");
+		else {
+			System.out.println("En la siguiente ronda compiten: ");
+			Jugador[] aux = tablaJugadores.devolverTabla();
+			QuickShort quickAux = new QuickShort(aux, 0, tablaJugadores.getNumElementos() - 1);
+		
+			
+			int j = 0;
+			for(int i = numElementos - 1; 0 <= i; i--) {
+				if(j%2 == 0)
+				System.out.print(aux[i].identificador + " vs "); //Print normal no salta de linea !!
+				if(j%2 == 1)
+					System.out.println(aux[i].identificador + "\n");
+				j++;
+			}
+			
+			if(numElementos%2 == 1) System.out.println("computer");
+			
+		}
 
     }
 
@@ -276,13 +277,28 @@ public class GameManager {
         int zeroAscii = (int)'0';
         for (char c:ch) {
             int tmpAscii = (int)c;
-            sum = (sum*10)+(tmpAscii-zeroAscii);
+            sum = (sum*100)+(tmpAscii-zeroAscii);
         }
         return sum;
     }
 
     public void verpuntuaciones() {
-
+    	int numElementos = tablaJugadores.getNumElementos();
+		
+		if(tablaJugadores.getNumElementos() <= 0) System.out.println("No tenemos corredores!\nSelecciona 99 para rellenar con corredores de prueba");
+		else {
+			System.out.println("A continuacion se muestran las puntuaciones: \n");
+			Jugador[] aux = tablaJugadores.devolverTabla();
+			
+			MergeShortAlgorythm mergeAux = new MergeShortAlgorythm();
+			aux = mergeAux.MergeOrdenacion(aux);
+		
+			for(int i = numElementos - 1; 0 <= i; i--) {
+				System.out.println(aux[i].identificador + ", " + aux[i].puntuacion);
+			}
+			
+			
+		}
     }
     
     public void clearConsole() {

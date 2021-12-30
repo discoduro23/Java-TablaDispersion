@@ -5,7 +5,7 @@ public class MergeShortAlgorythm {
     public MergeShortAlgorythm() {
     }
     MergeShortAlgorythm(Jugador[] array){
-    	MergeOrdenacion(array);
+    	array = MergeOrdenacion(array);
     }
 
 
