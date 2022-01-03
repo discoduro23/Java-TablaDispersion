@@ -143,14 +143,25 @@ public class TablaDispersa {
 
     public void insertar(Jugador r)
     {
+    	if(buscar(r.getCodigo())==null||buscar(r.getCodigo()).getCodigo()!=r.getCodigo()) {
         int posicion=direccion(r.getCodigo());
         r.esAlta = true;
         tabla[posicion]=r;
         numElementos++;
-
+        System.out.println("El jugador sido dado de alta correctamente");
         factorCarga=(double)(numElementos)/TAMTABLA;
         if(factorCarga>0.8) System.out.println("\n#### EL FACTOR DE CARGA SUPERA EL 80%, conviene aumentar el tamaño");
-
+    	}
+    	else if(buscar(r.getCodigo()).getCodigo()==r.getCodigo() && !buscar(r.getCodigo()).esAlta) {
+    		r.esAlta = true;
+    		numElementos++;
+    		System.out.println("El jugador ha vuelto a ser dado de alta");
+    		factorCarga=(double)(numElementos)/TAMTABLA;
+            if(factorCarga>0.8) System.out.println("\n#### EL FACTOR DE CARGA SUPERA EL 80%, conviene aumentar el tamaño");
+    	}
+    	else {
+    		System.out.println("El jugador ya esta apuntado");
+    	}
     }
 
     //devuelve una referencia a un elemento di lo encuentra en la tabla y devuelve NULL si no lo encuentra o fue dado de baja
