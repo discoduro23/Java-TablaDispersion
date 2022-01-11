@@ -239,13 +239,15 @@ public class GameManager {
 
 
         Jugador Player1 = new Jugador("J13", 13);
-        Jugador Player2 = new Jugador("J25", 25);
+        Jugador Player2 = new Jugador("J7", 7);
         Jugador Player3 = new Jugador("J35", 35);
         Jugador Player4 = new Jugador("J4", 4);
         Jugador Player5 = new Jugador("J56", 56);
         Jugador Player6 = new Jugador("J68", 68);
-        Jugador Player7 = new Jugador("J7", 7);
-
+        Jugador Player7 = new Jugador("J25a", 25);
+        Jugador Player8 = new Jugador("J25b", 25);
+        Jugador Player9 = new Jugador("J25c", 25);
+        
         addJugador(Player1);
         addJugador(Player2);
         addJugador(Player3);
@@ -253,6 +255,8 @@ public class GameManager {
         addJugador(Player5);
         addJugador(Player6);
         addJugador(Player7);
+        addJugador(Player8);
+        addJugador(Player9);
     }
 
     public void borrarjugador() {

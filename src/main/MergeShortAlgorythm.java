@@ -57,7 +57,7 @@ public class MergeShortAlgorythm {
         int iteracion=0;
         while (iteracion<length) {
             if(i<array1.length && j<array2.length) {
-                if (array1[i].puntuacion < array2[j].puntuacion) {
+                if (array1[i].puntuacion <= array2[j].puntuacion) {
                     newArray[i+j] = array1[i];
                     i++;
                 }
@@ -123,7 +123,7 @@ public class MergeShortAlgorythm {
 
     public boolean comprobarOrdenacion(Jugador[] array) {
         for(int i = 0; i<array.length-1; i++) {
-            if (array[i].puntuacion>array[i+1].puntuacion) return false;
+            if (array[i].puntuacion>=array[i+1].puntuacion) return false;
         }
         return true;
     }
