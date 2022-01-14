@@ -136,19 +136,6 @@ public class GameManager {
     }
 
 
-	/*
-
-	public boolean yaEnTabla(Object objComprobar) {
-		if(objComprobar.getClass() == String.class) {	//Es una string
-			if(tablaJugadores.tabla[tablaJugadores.direccion((String) objComprobar)].esAlta && (tablaJugadores.tabla[tablaJugadores.direccion((String) objComprobar)].identificador == objComprobar)) { //Esta activa, y el identificador es igual
-				return true;
-
-			}
-		} else { //Hemos metido el Jugador
-			if(tablaJugadores.tabla[tablaJugadores.direccion((Jugador) objComprobar.identificador)].esAlta && (tablaJugadores.tabla[tablaJugadores.direccion((String) objComprobar)].identificador == objComprobar))
-		}
-		*/
-
     public void pedirpuntosjugador(){
         System.out.println("Escribe el identificador del jugador al que desee añadir puntos: ");
         Scanner in = new Scanner(System.in);
@@ -162,8 +149,14 @@ public class GameManager {
             Scanner reader = new Scanner(System.in);
             int puntos = 0;
             puntos = reader.nextInt();
-            agregarPuntuacion(identificador,puntos);
-            System.out.println("Se han sumado "+puntos+" puntos con exito al jugador con identificador "+identificador);
+            if(puntos >= 0) {
+                agregarPuntuacion(identificador,puntos);
+                System.out.println("Se han sumado "+puntos+" puntos con exito al jugador con identificador "+identificador);
+            
+            }
+            else {
+            	System.out.println("Oops! Parece que has intentado meter un numero negativo. Solo se aceptan numeros positivos \n");
+            }
         }
     }
     public void pedirpuntosjugadorresta(){
@@ -175,11 +168,16 @@ public class GameManager {
             System.out.println("El identificador "+identificador+" no se encuentra en la tabla, escribe uno nuevo");
         }
         else{
-            System.out.println("Escribe el numero de puntos que desee restar: ");
+            System.out.println("Escribe el numero de puntos que desee restar (en positivo): ");
             Scanner reader = new Scanner(System.in);
             int puntos = 0;
             puntos = reader.nextInt();
-                restarPuntuacion(identificador, puntos);
+            if(puntos >= 0) {
+            restarPuntuacion(identificador, puntos);
+            }
+            else {
+            	System.out.println("Oops! Parece que has intentado meter un numero negativo. Solo se aceptan numeros positivos \n");
+            }
         }
     }
 
